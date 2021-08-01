@@ -1,2 +1,7 @@
+
+.idea
 *.iml
-.idea/
+out
+gen
+target
+*.jar
