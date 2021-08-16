@@ -1,5 +1,6 @@
 package com.it_academy.practice.junit_basics;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -19,12 +20,29 @@ public class Main {
         System.out.println("Exponentiation result: " + calculator.calculate('^'));
         System.out.println("Extracting the root result: " + calculator.calculate('√'));
 
-        Calculator calc = new Calculator(10, 2, 1, 3, 1);
+        sc.close();
 
-        System.out.println("Plus result: " +  calc.calculateMoreParameters('+'));
-        System.out.println("Minus result: " +  calc.calculateMoreParameters('-'));
-        System.out.println("Division result: " +  calc.calculateMoreParameters('/'));
-        System.out.println("Multiply result: " +  calc.calculateMoreParameters('*'));
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите строку чисел");
 
+        ArrayList<Integer> list = new ArrayList<>();
+        String lineOfNumbers = scanner.nextLine();
+        String[] numbers = lineOfNumbers.split("\\s+");
+        for (String number : numbers) {
+            try {
+                int x = Integer.parseInt(number);
+                list.add(x);
+            } catch (NumberFormatException e) {
+                System.out.println("Введено недопустимое значение, начните сначала");
+                return;
+            }
+        }
+        scanner.close();
+
+        Calculator calc = new Calculator(list);
+        System.out.println(calc.calculateMoreParameters('-'));
+        System.out.println(calc.calculateMoreParameters('+'));
+        System.out.println(calc.calculateMoreParameters('*'));
+        System.out.println(calc.calculateMoreParameters('/'));
     }
 }
